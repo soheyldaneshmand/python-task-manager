@@ -123,3 +123,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def load_tasks():
+    if os.path.exists(FILE_NAME):
+        try:
+            with open(FILE_NAME, "r", encoding="utf-8") as file:
+                return json.load(file)
+
+        except (json.JSONDecodeError, OSError):
+            print("Error dar khande file tasks!")
+            return []
+
+    return []
