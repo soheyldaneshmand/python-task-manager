@@ -23,7 +23,8 @@ def show_menu():
     print("2. Namayeshe karha")
     print("3. Hazfe kar")
     print("4. Takmil kar")
-    print("5. Khorooj")
+    print("5. Virayesh kar")
+    print("6. Khorooj")
 
 
 def add_task(tasks):
@@ -114,12 +115,18 @@ def main():
             complete_task(tasks)
 
         elif choice == "5":
+            edit_task(tasks)
+
+        elif choice == "6":
             print("Barname be payan resid. Khodahafez!")
             break
 
         else:
             print("Gozine namotabar ast!")
 
+
+if __name__ == "__main__":
+    main()
 
 if __name__ == "__main__":
     main()
@@ -136,3 +143,30 @@ def load_tasks():
             return []
 
     return []
+
+def edit_task(tasks):
+    show_tasks(tasks)
+
+    if not tasks:
+        return
+
+    try:
+        number = int(input("Shomare kar baraye virayesh: "))
+
+        if 1 <= number <= len(tasks):
+            new_title = input("Name jadid kar ra vared konid: ")
+
+            if new_title.strip() == "":
+                print("Name kar nemitavanad khali bashad!")
+                return
+
+            tasks[number - 1]["title"] = new_title
+            save_tasks(tasks)
+
+            print("Name kar ba movafaghiat virayesh shod!")
+
+        else:
+            print("Shomare namotabar ast!")
+
+    except ValueError:
+        print("Lotfan yek adad vared konid!")
